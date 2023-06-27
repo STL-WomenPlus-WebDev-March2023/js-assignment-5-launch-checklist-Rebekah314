@@ -2,6 +2,13 @@
 
 window.addEventListener("load", function() {
 
+    const submitButton = document.getElementById("formSubmit");
+    const pilot = document.getElementById("pilotName");
+    submitButton.addEventListener("click", function(event) {
+        alert(validateInput(pilot.value));
+
+    });
+
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
    let listedPlanetsResponse;
