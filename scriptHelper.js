@@ -28,11 +28,11 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   window.alert("I made it here!");
    let checkPilot = validateInput(pilot.value);
    let checkCopilot = validateInput(copilot.value);
    let checkFuel = validateInput(fuelLevel.value);
    let checkCargo = validateInput(cargoLevel.value);
+   
    if (checkPilot === "Empty" || checkCopilot === "Empty" 
    || checkFuel === "Empty" || checkCargo === "Empty") {
     return "empty";
@@ -42,7 +42,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    || checkFuel === "Not a Number" || checkCargo === "Not a NUmber") {
     return "wrong type";
    }
-   alert("made it to the end!");
+
+   let returnString = "";
+   if (fuelLevel.value < 10000){
+    returnString += "fuel ";
+   }
+   if (cargoLevel.value > 10000) {
+    returnString += "cargo";
+   }
+   return returnString;
 }
 
 async function myFetch() {
