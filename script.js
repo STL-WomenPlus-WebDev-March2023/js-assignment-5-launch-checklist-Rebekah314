@@ -26,38 +26,39 @@ window.addEventListener("load", function() {
     submitButton.addEventListener("click", function(event) {
         
         let checkFields = formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
-        faultyItemsList.style.visibility = "visible";
-        //Make sure no fields are left blank
+        
+        //Make sure no fields are left blank or are incorrect type
         if (checkFields === "empty") {
             alert("All fields required!");
-        }
-        //Make sure submissions are the correct type (sstring or number)
-        if (checkFields === "wrong type") {
+        } else if (checkFields === "wrong type") {
             alert("Make sure to enter valid information for each field!");
-        }
-        //Update faultyItems list
-        if (checkFields.includes("fuel") || checkFields.includes("cargo")) {
-            launchStatus.innerHTML = "Shuttle Not Ready For Launch";
-            launchStatus.style.color = "red";
-            if (checkFields.includes("fuel")) {
-                fuelStatus.innerHTML = "Fuel level too low for launch";
-            } else {
-                fuelStatus.innerHTML = "Fuel level high enough for launch";
-            }
-            if (checkFields.includes("cargo")) {
-                cargoStatus.innerHTML = "Cargo mass too heavy for launch";
-            } else {
-                cargoStatus.innerHTML = "Cargo mass low enough for launch";
-            }
         } else {
-            launchStatus.innerHTML = "Shuttle is Ready for Launch";
-            launchStatus.style.color = "green";
-            cargoStatus.innerHTML = "Cargo mass low enough for launch";
-            fuelStatus.innerHTML = "Fuel level high enough for launch";
+            faultyItemsList.style.visibility = "visible";
+            pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
+            copilotStatus.innerHTML = `Co-pilot ${copilot.value} is ready for launch`;
+            //Update faultyItems list
+            if (checkFields.includes("fuel") || checkFields.includes("cargo")) {
+                launchStatus.innerHTML = "Shuttle Not Ready For Launch";
+                launchStatus.style.color = "red";
+                if (checkFields.includes("fuel")) {
+                    fuelStatus.innerHTML = "Fuel level too low for launch";
+                } else {
+                    fuelStatus.innerHTML = "Fuel level high enough for launch";
+                }
+                if (checkFields.includes("cargo")) {
+                    cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+                } else {
+                    cargoStatus.innerHTML = "Cargo mass low enough for launch";
+                }
+            } else {
+                launchStatus.innerHTML = "Shuttle is Ready for Launch";
+                launchStatus.style.color = "green";
+                cargoStatus.innerHTML = "Cargo mass low enough for launch";
+                fuelStatus.innerHTML = "Fuel level high enough for launch";
+                
+            }
         }
-
-        pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
-        copilotStatus.innerHTML = `Co-pilot ${copilot.value} is ready for launch`;
+        
         event.preventDefault();
     });
 
