@@ -32,7 +32,7 @@ window.addEventListener("load", function() {
         || checkFuel === "Not a Number" || checkCargo === "Not a Number") {
             alert("Make sure to enter valid information for each field!");
         } else {
-            formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
+            formSubmission(window.document, list, pilot, copilot, fuelLevel, cargoMass);
         }
         
         event.preventDefault();
