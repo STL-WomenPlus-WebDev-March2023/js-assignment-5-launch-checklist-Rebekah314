@@ -16,8 +16,6 @@ window.addEventListener("load", function() {
     const cargoMass = document.querySelector("input[name=cargoMass]");
 
     let list = document.getElementById("faultyItems");
-
-
     list.style.visibility = "hidden";
 
     submitButton.addEventListener("click", function(event) {
@@ -36,8 +34,6 @@ window.addEventListener("load", function() {
         } else {
             formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
         }
-        
-        
         
         event.preventDefault();
     });
