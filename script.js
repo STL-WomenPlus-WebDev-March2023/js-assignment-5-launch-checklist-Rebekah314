@@ -16,17 +16,28 @@ window.addEventListener("load", function() {
     const cargoMass = document.querySelector("input[name=cargoMass]");
 
     let list = document.getElementById("faultyItems");
-    let pilotStatus = document.getElementById("pilotStatus");
-    let copilotStatus = document.getElementById("copilotStatus");
-    let fuelStatus = document.getElementById("fuelStatus");
-    let cargoStatus = document.getElementById("cargoStatus");
-    let launchStatus = document.getElementById("launchStatus");
+
 
     list.style.visibility = "hidden";
 
     submitButton.addEventListener("click", function(event) {
+
+        let checkPilot = validateInput(pilot.value);
+        let checkCopilot = validateInput(copilot.value);
+        let checkFuel = validateInput(fuelLevel.value);
+        let checkCargo = validateInput(cargoMass.value);
+
+        if (checkPilot === "Empty" || checkCopilot === "Empty" 
+        || checkFuel === "Empty" || checkCargo === "Empty") {
+            alert("All fields are required!");
+        } else if (checkPilot === "Is a Number" || checkCopilot === "Is a Number" 
+        || checkFuel === "Not a Number" || checkCargo === "Not a Number") {
+            alert("Make sure to enter valid information for each field!");
+        } else {
+            formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
+        }
         
-        formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
+        
         
         event.preventDefault();
     });
