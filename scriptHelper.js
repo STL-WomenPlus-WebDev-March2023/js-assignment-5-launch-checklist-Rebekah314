@@ -33,13 +33,19 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    let checkCopilot = validateInput(copilot.value);
    let checkFuel = validateInput(fuelLevel.value);
    let checkCargo = validateInput(cargoLevel.value);
+
+   let pilotStatus = document.getElementById("pilotStatus");
+   let copilotStatus = document.getElementById("copilotStatus");
+   let fuelStatus = document.getElementById("fuelStatus");
+   let cargoStatus = document.getElementById("cargoStatus");
+   let launchStatus = document.getElementById("launchStatus");
    
    if (checkPilot === "Empty" || checkCopilot === "Empty" 
    || checkFuel === "Empty" || checkCargo === "Empty") {
-        alert("All fields required!");
+        window.alert("All fields required!");
    } else if (checkPilot === "Is a Number" || checkCopilot === "Is a Number" 
    || checkFuel === "Not a Number" || checkCargo === "Not a NUmber") {
-        alert("Make sure to enter valid information for each field!");
+        window.alert("Make sure to enter valid information for each field!");
    } else {
         list.style.visibility = "visible";
         pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
