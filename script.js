@@ -10,20 +10,22 @@
 window.addEventListener("load", function() {
 
     const submitButton = document.getElementById("formSubmit");
-    const pilot = document.querySelector("input[name=pilotName]");
-    const copilot = document.querySelector("input[name=copilotName]");
-    const fuelLevel = document.querySelector("input[name=fuelLevel]");
-    const cargoMass = document.querySelector("input[name=cargoMass]");
+    
 
     let list = document.getElementById("faultyItems");
     list.style.visibility = "hidden";
 
     submitButton.addEventListener("click", function(event) {
 
-        let checkPilot = validateInput(pilot.value);
-        let checkCopilot = validateInput(copilot.value);
-        let checkFuel = validateInput(fuelLevel.value);
-        let checkCargo = validateInput(cargoMass.value);
+        const pilot = document.querySelector("input[name=pilotName]").value;
+        const copilot = document.querySelector("input[name=copilotName]").value;
+        const fuelLevel = document.querySelector("input[name=fuelLevel]").value;
+        const cargoMass = document.querySelector("input[name=cargoMass]").value;
+
+        let checkPilot = validateInput(pilot);
+        let checkCopilot = validateInput(copilot);
+        let checkFuel = validateInput(fuelLevel);
+        let checkCargo = validateInput(cargoMass);
 
         if (checkPilot === "Empty" || checkCopilot === "Empty" 
         || checkFuel === "Empty" || checkCargo === "Empty") {
