@@ -36,22 +36,39 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    
    if (checkPilot === "Empty" || checkCopilot === "Empty" 
    || checkFuel === "Empty" || checkCargo === "Empty") {
-    return "empty";
-   }
-
-   if (checkPilot === "Is a Number" || checkCopilot === "Is a Number" 
+        alert("All fields required!");
+   } else if (checkPilot === "Is a Number" || checkCopilot === "Is a Number" 
    || checkFuel === "Not a Number" || checkCargo === "Not a NUmber") {
-    return "wrong type";
-   }
+        alert("Make sure to enter valid information for each field!");
+   } else {
+        list.style.visibility = "visible";
+        pilotStatus.innerHTML = `Pilot ${pilot.value} is ready for launch`;
+        copilotStatus.innerHTML = `Co-pilot ${copilot.value} is ready for launch`;
 
-   let returnString = "";
-   if (fuelLevel.value < 10000){
-    returnString += "fuel ";
-   }
-   if (cargoLevel.value > 10000) {
-    returnString += "cargo";
-   }
-   return returnString;
+
+
+        if (fuelLevel.value < 10000 || cargoLevel.value > 10000) {
+            launchStatus.innerHTML = "Shuttle Not Ready For Launch";
+            launchStatus.style.color = "rgb(199, 37, 78)";
+            if (fuelLevel.value < 10000) {
+                fuelStatus.innerHTML = "Fuel level too low for launch";
+            } else {
+                fuelStatus.innerHTML = "Fuel level high enough for launch";
+            }
+            if (cargoLevel.value > 10000) {
+                cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+            } else {
+                cargoStatus.innerHTML = "Cargo mass low enough for launch";
+            }
+        } else {
+            launchStatus.innerHTML = "Shuttle is Ready for Launch";
+            launchStatus.style.color = "rgb(65, 159, 106)";
+            cargoStatus.innerHTML = "Cargo mass low enough for launch";
+            fuelStatus.innerHTML = "Fuel level high enough for launch";
+            
+        }
+
+   } 
 }
 
 async function myFetch() {
