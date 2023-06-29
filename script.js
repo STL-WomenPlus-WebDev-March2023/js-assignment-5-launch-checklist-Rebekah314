@@ -23,6 +23,8 @@ window.addEventListener("load", function() {
     let cargoStatus = document.getElementById("cargoStatus");
     let launchStatus = document.getElementById("launchStatus");
 
+    faultyItemsList.style.visibility = "hidden";
+
     submitButton.addEventListener("click", function(event) {
         
         let checkFields = formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass);
